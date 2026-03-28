@@ -1,7 +1,7 @@
 # Phase 1: Repository Setup and Skeleton Adaptation
 
 ## Overview
-Initialize new repo github.com/cruvero/cruvero-mcp-sonarqube by copying skeleton from reference github.com/cruvero/cruvero-mcp-k8s, adapting config/config.go, main.go, internal/packages while citing reference files. Preserve all logging, OTEL, gateway behavior.
+Initialize new repo github.com/cruvero/cruvero-mcp-sonarqube by copying skeleton from reference github.com/cruvero/cruvero-mcp-k8s, adapting config/config.go, main.go, pkg/server/ and adding internal/sonarqube/ while preserving non-domain layers (logging/OTEL/gateway). No k8s-specific file paths remain.
 
 Why Now: This phase must precede all later phases because it establishes the non-domain foundation before adding SonarQube logic (dependency edge phase-1 → phase-2 with risk 0.1).
 
