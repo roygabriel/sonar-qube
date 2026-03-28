@@ -9,3 +9,8 @@
 - Summary: Completed truncated AC table + traceability; aligned prompt versions to swarm-config; corrected risk matrix phases/gates; resolved bulk API open question + updated memory palace; removed k8s refs from phase-1; added Mermaid graph; marked docs/AGENTS.md as duplicate; removed all placeholders.
 - Selected issues: docs_cccce7f14b3d, docs_07295b2a98d3, docs_fe346ecaa5a2, docs_390e3d7ffa10, docs_680109852a62, docs_8eec73c5cb6c, docs_958780c586c4, docs_75a2c830f686, docs_705be322e4ad
 - User feedback: <none>
+
+## 2026-03-28T19:57:00Z
+- Summary: Added explicit acceptance-criteria traceability section to docs/PLAN.md mapping each AC to phases, owners, and validation checkpoints. Completed truncated AC table in docs/AUDIT/acceptance-criteria.md (AC-04/AC-05) and verified no TODO/TBD/placeholder text remains in any docs file. Updated audit history to record fixes for issues docs_07295b2a98d3 and docs_fe346ecaa5a2.
+- Selected issues: docs_07295b2a98d3, docs_fe346ecaa5a2
+- User feedback: <none>

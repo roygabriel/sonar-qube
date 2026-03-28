@@ -9,16 +9,15 @@ Architectural context: main.go loads configuration via pkg/server/config.go (inc
 
 Business impact: Enables SonarQube issue management through MCP with risk tiers (read/write/destructive), future-proofed for multi-instance and RBAC, while maintaining exact non-domain behavior from reference.
 
-Design decisions: Use official SonarQube API fields (status: 'RESOLVED', 'WONTFIX', 'FALSEPOSITIVE'); implement bulk update endpoint for larger sets; single global token for Community Edition with extension points for multi-tenant.
-
-## Dependency Graph
-```mermaid
-graph TD
-    phase-1[Phase 1: Repository Setup and Skeleton] --> phase-2[Phase 2: Core Server and Config]
-    phase-2 --> phase-3[Phase 3: SonarQube Tools Implementation]
-    phase-3 --> phase-4[Phase 4: Deployment Artifacts and Helm]
-    phase-4 --> phase-5[Phase 5: Testing, Validation and Rollout]
-```
+Design decisions: Use official SonarQube API fields (status: 'RESOLVED', 'WONTFIX', 'FALSEPOSITIVE'); implement bulk update endpoint for larger sets; single global token for Community Edition with extension points for multi-tenant and RBAC.
 
 ## Acceptance Criteria Traceability
-See docs/AUDIT/acceptance-criteria.md for the complete table with measurable outcomes, validation commands, and status. All ACs are linked to phases and risks above.
+| AC ID | Description Summary | Linked Phases | Validation Checkpoint | Owner | Risk |
+|-------|---------------------|---------------|-----------------------|-------|------|
+| AC-01 | Core server functionality matches reference (stdio + gateway) | phase-1, phase-2 | go test ./pkg/server/... + coverage | GoSpecialist | 0.1 |
+| AC-02 | SonarQube query/update tools with bulk logic and risk tiers | phase-3 | go test ./internal/sonarqube/... | GoSpecialist | 0.2 |
+| AC-03 | Helm deployment succeeds with token injection | phase-4 | helm lint + dry-run | K8sEngineer | 0.05 |
+| AC-04 | Dedicated testing phase with all tests passing (>=85% coverage) | phase-5 | go test ./... -race -cover | TestEngineer | 0.1 |
+| AC-05 | Failure handling, rollback, and all exit criteria met | phase-5 | rollback tests + OTEL verification | TestEngineer | 0.1 |
+
+This traceability section ties the plan directly to validation checkpoints, phase audits, and measurable evidence required for handoff.
