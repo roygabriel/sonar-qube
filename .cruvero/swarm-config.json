@@ -1,0 +1,87 @@
+{
+  "agents": [
+    {
+      "role": "MCPArchitect",
+      "promptVersion": "v2",
+      "kbRefs": [
+        "cruvero/cruvero-mcp-k8s"
+      ]
+    },
+    {
+      "role": "GoSpecialist",
+      "promptVersion": "v1",
+      "kbRefs": []
+    },
+    {
+      "role": "K8sEngineer",
+      "promptVersion": "v3",
+      "kbRefs": []
+    },
+    {
+      "role": "TestEngineer",
+      "promptVersion": "v2",
+      "kbRefs": []
+    }
+  ],
+  "auditPrompts": {
+    "acceptanceCriteria": "docs/AUDIT/acceptance-criteria.md",
+    "phase-1": "docs/AUDIT/phase-audit-1.md",
+    "phase-2": "docs/AUDIT/phase-audit-2.md",
+    "phase-3": "docs/AUDIT/phase-audit-3.md",
+    "phase-4": "docs/AUDIT/phase-audit-4.md",
+    "phase-5": "docs/AUDIT/phase-audit-5.md",
+    "riskMatrix": "docs/AUDIT/risk-matrix.md"
+  },
+  "createdAt": "2026-03-28T19:49:47Z",
+  "dependencyGraph": [
+    {
+      "from": "phase-1",
+      "to": "phase-2",
+      "risk": 0.1
+    },
+    {
+      "from": "phase-2",
+      "to": "phase-3",
+      "risk": 0.2
+    },
+    {
+      "from": "phase-3",
+      "to": "phase-4",
+      "risk": 0.05
+    },
+    {
+      "from": "phase-4",
+      "to": "phase-5",
+      "risk": 0.1
+    }
+  ],
+  "knowledgeBases": [
+    "cruvero/cruvero-mcp-k8s"
+  ],
+  "modelOverride": "grok-code-fast-1",
+  "phasePlans": {
+    "phase-1": "docs/PHASE_PLANS/phase-1.md",
+    "phase-2": "docs/PHASE_PLANS/phase-2.md",
+    "phase-3": "docs/PHASE_PLANS/phase-3.md",
+    "phase-4": "docs/PHASE_PLANS/phase-4.md",
+    "phase-5": "docs/PHASE_PLANS/phase-5.md"
+  },
+  "planId": "ef6d6451-6ec6-43dd-92cf-ce0e59527200",
+  "promptVersions": {
+    "GoSpecialist": "v1",
+    "K8sEngineer": "v3",
+    "MCPArchitect": "v2",
+    "TestEngineer": "v2"
+  },
+  "referenceRepo": "cruvero/cruvero-mcp-k8s@dev",
+  "referenceRepos": [
+    {
+      "branch": "dev",
+      "id": "cruvero__cruvero-mcp-k8s@dev",
+      "indexedTokens": 132241,
+      "owner": "cruvero",
+      "repo": "cruvero-mcp-k8s",
+      "slot": 1
+    }
+  ]
+}
