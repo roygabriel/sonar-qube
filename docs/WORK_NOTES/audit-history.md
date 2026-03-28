@@ -14,3 +14,8 @@
 - Summary: Added explicit acceptance-criteria traceability section to docs/PLAN.md mapping each AC to phases, owners, and validation checkpoints. Completed truncated AC table in docs/AUDIT/acceptance-criteria.md (AC-04/AC-05) and verified no TODO/TBD/placeholder text remains in any docs file. Updated audit history to record fixes for issues docs_07295b2a98d3 and docs_fe346ecaa5a2.
 - Selected issues: docs_07295b2a98d3, docs_fe346ecaa5a2
 - User feedback: <none>
+
+## 2026-03-28T19:57:44Z
+- Summary: Completed docs/PLAN.md by finishing truncated design decisions section with full SonarQube-specific details (API fields, bulk endpoint, token handling, risk tiers, future-proofing). Removed any residual placeholder implications and ensured full traceability to acceptance criteria, phases, and reference repo behavior. Updated root AGENTS.md to strengthen Definition of Done with explicit no-TODO rule and alignment to current plan ID while preserving all coordination rules.
+- Selected issues: docs_fe346ecaa5a2
+- User feedback: <none>

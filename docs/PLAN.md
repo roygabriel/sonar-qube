@@ -9,15 +9,18 @@ Architectural context: main.go loads configuration via pkg/server/config.go (inc
 
 Business impact: Enables SonarQube issue management through MCP with risk tiers (read/write/destructive), future-proofed for multi-instance and RBAC, while maintaining exact non-domain behavior from reference.
 
-Design decisions: Use official SonarQube API fields (status: 'RESOLVED', 'WONTFIX', 'FALSEPOSITIVE'); implement bulk update endpoint for larger sets; single global token for Community Edition with extension points for multi-tenant and RBAC.
+Design decisions: Use official SonarQube API fields (status: 'RESOLVED', 'WONTFIX', 'FALSEPOSITIVE'); implement bulk update endpoint (/api/issues/bulk_change) for larger sets; single global token for Community Edition with extension points for multi-tenant and RBAC; risk tiers assigned as read (query), write (status update), destructive (bulk operations); all non-domain layers (logging, OTEL, gateway) kept identical to reference.
 
-## Acceptance Criteria Traceability
-| AC ID | Description Summary | Linked Phases | Validation Checkpoint | Owner | Risk |
-|-------|---------------------|---------------|-----------------------|-------|------|
-| AC-01 | Core server functionality matches reference (stdio + gateway) | phase-1, phase-2 | go test ./pkg/server/... + coverage | GoSpecialist | 0.1 |
-| AC-02 | SonarQube query/update tools with bulk logic and risk tiers | phase-3 | go test ./internal/sonarqube/... | GoSpecialist | 0.2 |
-| AC-03 | Helm deployment succeeds with token injection | phase-4 | helm lint + dry-run | K8sEngineer | 0.05 |
-| AC-04 | Dedicated testing phase with all tests passing (>=85% coverage) | phase-5 | go test ./... -race -cover | TestEngineer | 0.1 |
-| AC-05 | Failure handling, rollback, and all exit criteria met | phase-5 | rollback tests + OTEL verification | TestEngineer | 0.1 |
+## Acceptance Criteria
+- Core server functionality from main.go and pkg/server/ matches reference behavior on happy path
+- All SonarQube tools support querying issues by project/branch/types and performing status updates with correct risk tiering (read/write/destructive) and handle bulk updates for >10 items without overwhelming the API
+- Helm deployment from deployment/helm/ succeeds in target cluster with no errors
+- Dedicated testing phase completes with all tests passing and zero critical defects
+- Failure handling and rollback function as verified during rollout
+- All phase exit criteria and binary test results are met
 
-This traceability section ties the plan directly to validation checkpoints, phase audits, and measurable evidence required for handoff.
+## Phases
+See docs/PHASE_PLANS/phase-*.md for detailed tasks.
+
+## Risk Matrix
+See docs/AUDIT/risk-matrix.md for full matrix aligned to dependency graph.
